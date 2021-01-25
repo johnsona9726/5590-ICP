@@ -1,0 +1,30 @@
+def list_string():
+    test_list = []
+    while True:
+        test_list.append(input("Enter a character: "))
+        if len(test_list) == 6:
+            break
+    print(test_list)
+    del test_list[0]
+    del test_list[2]
+    test_list.reverse
+    print(*test_list)
+
+
+def math_input():
+    num1_string = input("Enter a number: ")
+    num2_string = input("Enter another number: ")
+    num1 = int(num1_string)
+    num2 = int(num2_string)
+    addition = num1 + num2
+    multiplication = num1 * num2
+    division = num1 / num2
+    print("%d + %d = %d" % (num1, num2, addition))
+    print("%d * %d = %d" % (num1, num2, multiplication))
+    print("%d / %d = %d" % (num1, num2, division))
+
+
+def python_to_pythons():
+    sentence = input("Please enter a sentence: ")
+    new_sentence = sentence.replace("python", "pythons")
+    print("New sentence is %s" % new_sentence)
