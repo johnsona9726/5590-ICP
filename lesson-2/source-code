@@ -1,0 +1,51 @@
+
+def ft_to_cm():
+    students_ft = []
+    students_cm = []
+    num_students = input("How many students? ")
+    for i in range(num_students):
+        students_ft.append(input("Enter height in feet for student %d: " % i))
+    for i in range(num_students):
+        students_cm.append(students_ft[i] * 30.48)
+    print("Height of students in centimeters: ")
+    print(students_cm)
+
+
+def steps_to_zero():
+    count = 0
+    num = input("Enter a non-negative integer: ")
+    number = num
+    while num != 0:
+        if num % 2 == 0:
+            num = num/2
+            count += 1
+        else:
+            num = num - 1
+            count += 1
+    print("Number of steps to get %d to 0: %d" % (number, count))
+
+
+def wordcount(file_name):
+    words = {}
+    infile = open(file_name, 'r')
+    line = infile.readline()
+    while line != "":
+        check = line.split()
+        for x in check:
+            if x in words:
+                words[x] += 1
+            else:
+                words[x] = 1
+        line = infile.readline()
+    for key, value in words.items():
+        print("%s: %d" % (key, value))
+    infile.close()
+
+
+if __name__ == '__main__':
+    print("Feet to centimeters: ")
+    ft_to_cm()
+    print("Steps to get to 0: ")
+    steps_to_zero()
+    print("Wordcount: ")
+    wordcount("TEST")
