@@ -1,0 +1,72 @@
+class Employee:
+    num_employees = 0
+    employee_list = []
+
+    def __init__(self):
+        self.name = ""
+        self.family = ""
+        self.salary = 0
+        self.department = ""
+        Employee.num_employees += 1
+        Employee.employee_list.append(self)
+
+    def get_name(self):
+        return self.name
+
+    def get_family(self):
+        return self.family
+
+    def get_salary(self):
+        return self.salary
+
+    def get_department(self):
+        return self.department
+
+    def set_name(self, name):
+        self.name = name
+
+    def set_salary(self, salary):
+        self.salary = salary
+
+    def set_family(self, family):
+        self.family = family
+
+    def set_department(self, department):
+        self.department = department
+
+    @staticmethod
+    def avg_salary():
+        sum_salaries = 0
+        for x in Employee.employee_list:
+            sum_salaries += x.salary
+        avg_salary = (sum_salaries / Employee.num_employees)
+        return avg_salary
+
+
+class FullTimeEmployee(Employee):
+    def __init__(self):
+        Employee.__init__(self)
+
+
+if __name__ == '__main__':
+    emp1 = Employee()
+    emp1.set_name("Timothy")
+    emp1.set_department("Accounting")
+    emp1.set_salary(80000)
+    emp2 = FullTimeEmployee()
+    emp2.set_name("Rebecca")
+    emp2.set_family("Johnathan")
+    emp2.set_department("Marketing")
+    emp2.set_salary(90000)
+    emp3 = Employee()
+    emp3.set_name("Sam")
+    emp3.set_salary(50000)
+    emp3.set_department("Accounting")
+    print "Average salary = ", Employee.avg_salary()
+    print "Employee one name: ", emp1.get_name()
+    print "Employee two department: ", emp2.get_department()
+    print "Employee three salary: ", emp3.get_salary()
+    print "Number of employees: ", Employee.num_employees
+    print emp1.__dict__
+    print emp2.__dict__
+    print emp3.__dict__
