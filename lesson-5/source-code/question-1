@@ -1,0 +1,25 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+if __name__ == '__main__':
+    plt.style.use(style='ggplot')
+    plt.rcParams['figure.figsize'] = (10, 6)
+    train = pd.read_csv(r'C:\Users\annaj\Documents\data.csv')
+    print(train.SalePrice.describe())
+    print(train.GarageArea.describe())
+    numeric_features = train.select_dtypes(include = [np.number])
+    ###plt.scatter(train.GarageArea, train.SalePrice)
+    ###plt.xlabel('Garage Area')
+    ###plt.ylabel('Sale Price')
+    ###plt.show()
+    remove_outliers = train['GarageArea'] >= 100
+    train = train[remove_outliers]
+    remove_outliers = train['GarageArea'] <= 1000
+    train = train[remove_outliers]
+    remove_outliers = train['SalePrice'] <= 500000
+    train = train[remove_outliers]
+    plt.scatter(train.GarageArea, train.SalePrice)
+    plt.xlabel('Garage Area')
+    plt.ylabel('Sale Price')
+    plt.show()
