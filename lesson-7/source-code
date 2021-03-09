@@ -1,0 +1,73 @@
+import requests
+from bs4 import BeautifulSoup
+import os
+import urllib
+import nltk
+
+response = requests.get(url="https://en.wikipedia.org/wiki/Google",)
+url = "https://en.wikipedia.org/wiki/Google"
+##create the file
+file = open("input.txt", "a+", encoding='utf-8')
+##get the data from the url, parse it, and write it into the 'input.txt' file
+def get_data(url):
+    source_code = urllib.request.urlopen(url)
+    plain_text = source_code
+    soup = BeautifulSoup(plain_text, "html.parser")
+    body = soup.find('div', {'class': 'mw-parser-output'})
+    file.write(str(body.text))
+
+##tokenization
+##get the text from the file
+url_text = open('input.txt', encoding="utf-8").read()
+##sentence tokenization and word tokenization
+stokens = nltk.sent_tokenize(url_text)
+wtokens = nltk.word_tokenize(url_text)
+
+##print sentence tokens
+for s in stokens:
+    print(s)
+
+##print word tokens
+for w in wtokens:
+    print(w)
+
+##pos tagging
+pos_text = nltk.word_tokenize(url_text)
+print(nltk.pos_tag(pos_text))
+
+##stemming
+##from nltk.stem import PorterStemmer
+from nltk.stem import LancasterStemmer
+##from nltk.stem import SnowballStemmer
+
+lStemmer = LancasterStemmer()
+print(lStemmer.stem(url_text))
+
+##lemmatization
+from nltk.stem import WordNetLemmatizer
+
+lemmatizer = WordNetLemmatizer()
+print(lemmatizer.lemmatize(url_text))
+
+##trigrams
+##work with tokenized sentences, getting trigrams for only the first 5
+from nltk import trigrams
+count = 0
+for i in stokens:
+    count += 1
+    if count < 5:
+        ##get the trigram for each of the 5 tokenized sentences, and print
+        string_trigrams = trigrams(i)
+        print(string_trigrams)
+
+##NER
+##import the necessary libraries
+from nltk import wordpunct_tokenize, pos_tag, ne_chunk
+
+##get the first 5 tokenized sentences
+count = 0
+for i in stokens:
+    count += 1
+    if count < 5:
+        ##print the named entry recognition for these sentences
+        print(ne_chunk(pos_tag(wordpunct_tokenize(i))))
