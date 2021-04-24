@@ -21,3 +21,5 @@ Assignment 9 - https://github.com/johnsona9726/5590-ICP/wiki/Assignment-9
 Assignment 10 - https://github.com/johnsona9726/5590-ICP/wiki/Assignment-10
 
 Assignment 11 - https://github.com/johnsona9726/5590-ICP/wiki/Assignment-11
+
+Assignment 12 - https://github.com/johnsona9726/5590-ICP/wiki/Assignment-12
